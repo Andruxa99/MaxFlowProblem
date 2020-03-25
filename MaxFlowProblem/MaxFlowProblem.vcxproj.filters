@@ -13,18 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\Array">
+      <UniqueIdentifier>{61e1ad9d-401a-4718-94ca-cfa8bdfce813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Array">
+      <UniqueIdentifier>{67bc95d6-441d-419f-bef0-d290cd64f061}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MaxFlowProblem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="myArray.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Array</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix.cpp">
+      <Filter>Исходные файлы\Array</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myArray.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Array</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix.h">
+      <Filter>Файлы заголовков\Array</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

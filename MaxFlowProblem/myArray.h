@@ -6,8 +6,7 @@ using namespace std;
 template<class T> class myArray
 {
 public:
-    explicit myArray(size_t size, T value = 0);
-    myArray() {};
+    explicit myArray(size_t size = 0, T value = 0);
     ~myArray();
     myArray<T>(const myArray<T>& a);
 
