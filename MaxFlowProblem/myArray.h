@@ -1,5 +1,5 @@
 #pragma once
-#include <stdexcept>
+#include <algorithm>
 using namespace std;
 
 template<class T> class myArray

@@ -4,7 +4,7 @@
 template<class T> class matrix
 {
 public:
-    matrix(size_t n, size_t m, T value = 0);
+    matrix(size_t n = 0, size_t m = 0, T value = 0);
     matrix<T>(const matrix<T>& a);
     ~matrix<T>();
 

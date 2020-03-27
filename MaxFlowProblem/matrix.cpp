@@ -36,22 +36,20 @@ void matrix<T>::fill(T value)
 template<class T>
 void matrix<T>::swap(matrix<T>& a)
 {
-    swap(n, a.n);
-    swap(m, a.m);
-    swap(arr, a.arr);
+    std::swap(n, a.n);
+    std::swap(m, a.m);
+    std::swap(arr, a.arr);
 }
 
 template<class T>
 myArray<T> matrix<T>::operator[](size_t index) const
 {
-    if (index >= n) throw out_of_range("the argument value is greater than the array length");
     return arr[index];
 }
 
 template<class T>
 myArray<T>& matrix<T>::operator[](size_t index)
 {
-    if (index >= n) throw out_of_range("the argument value is greater than the array length");
     return arr[index];
 }
 

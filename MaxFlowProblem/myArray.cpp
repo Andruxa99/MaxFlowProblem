@@ -36,14 +36,12 @@ void myArray<T>::swap(myArray<T>& a)
 template<class T>
 T myArray<T>::operator[](size_t index) const
 {
-    if (index >= size) throw out_of_range("the argument value is greater than the myArray length");
     return arr[index];
 }
 
 template<class T>
 T& myArray<T>::operator[](size_t index)
 {
-    if (index >= size) throw out_of_range("the argument value is greater than the myArray length");
     return arr[index];
 }
 

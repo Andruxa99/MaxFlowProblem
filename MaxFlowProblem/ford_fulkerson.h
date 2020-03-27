@@ -10,7 +10,7 @@ class ford_fulkerson
 {
 public:
 	ford_fulkerson(int v, int e, int source, int dest);
-	virtual ~ford_fulkerson();
+	~ford_fulkerson();
 
 protected:
 	bool* visited;
