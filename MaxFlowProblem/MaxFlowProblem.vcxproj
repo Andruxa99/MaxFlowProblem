@@ -147,12 +147,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ford_fulkerson.cpp" />
     <ClCompile Include="matrix.cpp" />
+    <ClCompile Include="matrix_ff.cpp" />
     <ClCompile Include="MaxFlowProblem.cpp" />
     <ClCompile Include="myArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ford_fulkerson.h" />
     <ClInclude Include="matrix.h" />
+    <ClInclude Include="matrix_ff.h" />
     <ClInclude Include="myArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -13,9 +13,17 @@ template<class T>
 matrix<T>::matrix(const matrix<T>& a)
     :n(a.n), m(a.m), arr(new myArray<T>[a.n])
 {
-    for (size_t i = 0; i < n; i++)
+    for (size_t i = 0; i < n; i++) {
+        arr[i] = myArray<T>(m);
         for (size_t j = 0; j < m; j++)
             arr[i][j] = a[i][j];
+    }
+}
+
+template<class T>
+matrix<T>::~matrix()
+{
+    delete[] arr;
 }
 
 template<class T>

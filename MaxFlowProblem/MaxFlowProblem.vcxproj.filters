@@ -19,6 +19,12 @@
     <Filter Include="Файлы заголовков\Array">
       <UniqueIdentifier>{67bc95d6-441d-419f-bef0-d290cd64f061}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Ford_Fulkerson">
+      <UniqueIdentifier>{9e9cecd3-a32f-4beb-bfbb-931dc1a8138d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Ford_Fulkerson">
+      <UniqueIdentifier>{57762788-5642-416e-8c09-f5ab59a49921}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MaxFlowProblem.cpp">
@@ -30,6 +36,12 @@
     <ClCompile Include="matrix.cpp">
       <Filter>Исходные файлы\Array</Filter>
     </ClCompile>
+    <ClCompile Include="ford_fulkerson.cpp">
+      <Filter>Исходные файлы\Ford_Fulkerson</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix_ff.cpp">
+      <Filter>Исходные файлы\Ford_Fulkerson</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myArray.h">
@@ -37,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="matrix.h">
       <Filter>Файлы заголовков\Array</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix_ff.h">
+      <Filter>Файлы заголовков\Ford_Fulkerson</Filter>
+    </ClInclude>
+    <ClInclude Include="ford_fulkerson.h">
+      <Filter>Файлы заголовков\Ford_Fulkerson</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

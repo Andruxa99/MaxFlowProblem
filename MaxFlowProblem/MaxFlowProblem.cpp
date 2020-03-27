@@ -1,34 +1,18 @@
 ﻿#include <iostream>
-#include "matrix.cpp"
-
-void print(const myArray<int>& array);
-void print(const matrix<int>& matrix);
+#include "matrix_ff.h"
 
 int main()
 {
-    myArray<int> array(4, 2);
-    print(array);
-    
-    matrix<int> matrix(5, 5, 5);
-    print(matrix);
-    matrix.fill(10);
-    print(matrix);
+    int v, e, source, dest;
+    cin >> v >> e >> source >> dest;
+
+    matrix<int> matrix(v + 1, v + 1);
+    for (int i = 0, v1, v2, cap; i < e; i++) {
+        cin >> v1 >> v2 >> cap;
+        matrix[v1][v2] = cap;
+    }
+    matrix_ff ff(matrix, v, e, source, dest);
+    cout << ff.solve();
 
     return 0;
-}
-
-void print(const myArray<int>& array)
-{
-    for (int i = 0; i < array.getSize(); i++)
-        cout << array[i] << " ";
-    cout << endl;
-}
-
-void print(const matrix<int>& matrix)
-{
-    for (int i = 0; i < matrix.getXSize(); i++) {
-        for (int j = 0; j < matrix.getYSize(); j++)
-            cout << matrix[i][j] << " ";
-        cout << endl;
-    }
 }
