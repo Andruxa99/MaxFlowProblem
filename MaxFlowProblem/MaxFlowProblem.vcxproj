@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="adjList_ff.cpp" />
     <ClCompile Include="ford_fulkerson.cpp" />
     <ClCompile Include="matrix.cpp" />
     <ClCompile Include="matrix_ff.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="myArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="adjList_ff.h" />
     <ClInclude Include="ford_fulkerson.h" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="matrix_ff.h" />

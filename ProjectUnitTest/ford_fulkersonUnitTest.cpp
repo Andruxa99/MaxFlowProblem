@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../MaxFlowProblem/matrix_ff.cpp"
+#include "../MaxFlowProblem/adjList_ff.cpp"
 #include "../MaxFlowProblem/ford_fulkerson.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -10,7 +11,7 @@ namespace ProjectUnitTests
 	TEST_CLASS(ford_fulkersonUnitTests)
 	{
 	public:
-		TEST_METHOD(should_return_the_correct_result1)
+		TEST_METHOD(should_matrix_ff_return_the_correct_result1)
 		{
 			int v = 6, e = 8, source = 1, dest = 6;
 			matrix<int> matrix(v + 1, v + 1);
@@ -26,7 +27,7 @@ namespace ProjectUnitTests
 			Assert::AreEqual(5, matrix_ff.solve());
 		}
 
-		TEST_METHOD(should_return_the_correct_result2)
+		TEST_METHOD(should_matrix_ff_return_the_correct_result2)
 		{
 			int v = 6, e = 9, source = 1, dest = 6;
 			matrix<int> matrix(v + 1, v + 1);
@@ -43,10 +44,10 @@ namespace ProjectUnitTests
 			Assert::AreEqual(19, matrix_ff.solve());
 		}
 
-		TEST_METHOD(should_return_the_correct_result3)
+		TEST_METHOD(should_matrix_ff_return_the_correct_result3)
 		{
 			int v = 4, e = 5, source = 1, dest = 4;
-			matrix<int> matrix(7, 7);
+			matrix<int> matrix(v + 1, v + 1);
 			matrix[1][2] = 1000;
 			matrix[1][3] = 1000;
 			matrix[2][3] = 1;
@@ -54,6 +55,95 @@ namespace ProjectUnitTests
 			matrix[3][4] = 1000;
 			matrix_ff matrix_ff(matrix, v, e, source, dest);
 			Assert::AreEqual(2000, matrix_ff.solve());
+		}
+
+		TEST_METHOD(should_adj_ff_return_the_correct_result1)
+		{
+			int v = 6, e = 8, source = 1, dest = 6;
+			graph g(v + 1);
+			g[1].push_back(make_pair(2, 3));
+			g[2].push_back(make_pair(1, 0));
+
+			g[1].push_back(make_pair(3, 3));
+			g[3].push_back(make_pair(1, 0));
+
+			g[2].push_back(make_pair(3, 2));
+			g[3].push_back(make_pair(2, 0));
+
+			g[2].push_back(make_pair(4, 3));
+			g[4].push_back(make_pair(2, 0));
+
+			g[3].push_back(make_pair(5, 2));
+			g[5].push_back(make_pair(3, 0));
+
+			g[4].push_back(make_pair(5, 4));
+			g[5].push_back(make_pair(4, 0));
+
+			g[4].push_back(make_pair(6, 2));
+			g[6].push_back(make_pair(4, 0));
+
+			g[5].push_back(make_pair(6, 3)); 
+			g[6].push_back(make_pair(5, 0));
+			adjList_ff adjList_ff(g, v, e, source, dest);
+			Assert::AreEqual(5, adjList_ff.solve());
+		}
+
+		TEST_METHOD(should_adj_ff_return_the_correct_result2)
+		{
+			int v = 6, e = 9, source = 1, dest = 6;
+			graph g(v + 1);
+			g[1].push_back(make_pair(2, 10));
+			g[2].push_back(make_pair(1, 0));
+
+			g[1].push_back(make_pair(3, 10));
+			g[3].push_back(make_pair(1, 0));
+
+			g[2].push_back(make_pair(3, 2));
+			g[3].push_back(make_pair(2, 0));
+
+			g[2].push_back(make_pair(4, 4));
+			g[4].push_back(make_pair(2, 0));
+
+			g[2].push_back(make_pair(5, 8));
+			g[5].push_back(make_pair(2, 0));
+
+			g[3].push_back(make_pair(5, 9));
+			g[5].push_back(make_pair(3, 0));
+
+			g[5].push_back(make_pair(4, 6));
+			g[4].push_back(make_pair(5, 0));
+
+			g[4].push_back(make_pair(6, 10));
+			g[6].push_back(make_pair(4, 0));
+
+			g[5].push_back(make_pair(6, 10));
+			g[6].push_back(make_pair(5, 0));
+
+			adjList_ff adjList_ff(g, v, e, source, dest);
+			Assert::AreEqual(19, adjList_ff.solve());
+		}
+
+		TEST_METHOD(should_adj_ff_return_the_correct_result3)
+		{
+			int v = 4, e = 5, source = 1, dest = 4;
+			graph g(v + 1);
+			g[1].push_back(make_pair(2, 1000));
+			g[2].push_back(make_pair(1, 0));
+
+			g[1].push_back(make_pair(3, 1000));
+			g[3].push_back(make_pair(1, 0));
+
+			g[2].push_back(make_pair(3, 1));
+			g[3].push_back(make_pair(2, 0));
+
+			g[2].push_back(make_pair(4, 1000));
+			g[4].push_back(make_pair(2, 0));
+
+			g[3].push_back(make_pair(4, 1000));
+			g[4].push_back(make_pair(3, 0));
+
+			adjList_ff adjList_ff(g, v, e, source, dest);
+			Assert::AreEqual(2000, adjList_ff.solve());
 		}
 	};
 }

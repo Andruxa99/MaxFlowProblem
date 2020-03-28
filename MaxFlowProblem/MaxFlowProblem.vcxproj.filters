@@ -42,6 +42,9 @@
     <ClCompile Include="matrix_ff.cpp">
       <Filter>Исходные файлы\Ford_Fulkerson</Filter>
     </ClCompile>
+    <ClCompile Include="adjList_ff.cpp">
+      <Filter>Исходные файлы\Ford_Fulkerson</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myArray.h">
@@ -54,6 +57,9 @@
       <Filter>Файлы заголовков\Ford_Fulkerson</Filter>
     </ClInclude>
     <ClInclude Include="ford_fulkerson.h">
+      <Filter>Файлы заголовков\Ford_Fulkerson</Filter>
+    </ClInclude>
+    <ClInclude Include="adjList_ff.h">
       <Filter>Файлы заголовков\Ford_Fulkerson</Filter>
     </ClInclude>
   </ItemGroup>
