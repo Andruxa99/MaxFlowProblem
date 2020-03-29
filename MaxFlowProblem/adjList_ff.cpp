@@ -1,4 +1,5 @@
 #include "adjList_ff.h"
+#include <algorithm>
 
 adjList_ff::adjList_ff(graph g, int v, int e, int source, int dest)
     : ford_fulkerson(v, e, source, dest), g(graph(g)) {}

@@ -1,5 +1,6 @@
 #pragma once
 #include "ford_fulkerson.h"
+#include "matrix.cpp"
 
 class matrix_ff : public ford_fulkerson
 {

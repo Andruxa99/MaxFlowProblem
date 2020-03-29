@@ -1,4 +1,6 @@
 #include "ford_fulkerson.h"
+#include <algorithm>
+using namespace std;
 
 ford_fulkerson::ford_fulkerson(int v, int e, int source, int dest)
     : numOfVertex(v), numOfEdges(e), source(source), dest(dest)

@@ -1,8 +1,5 @@
 #pragma once
-#include <vector>
-#include "matrix.cpp"
 
-typedef vector<vector<pair<int, int>>> graph;
 const int INF = (int)1e9;
 const int MAX_V = (int)1e3;
 

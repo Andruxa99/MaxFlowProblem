@@ -1,5 +1,10 @@
 #pragma once
 #include "ford_fulkerson.h"
+#include <vector>
+using namespace std;
+
+typedef vector<vector<pair<int, int>>> graph;
+
 class adjList_ff : public ford_fulkerson
 {
 public:
