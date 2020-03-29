@@ -1,6 +1,6 @@
 #pragma once
 #include "io.h"
-#include "matrix.cpp"
+#include "matrix_ff.h"
 
 class matrix_io : public io
 {

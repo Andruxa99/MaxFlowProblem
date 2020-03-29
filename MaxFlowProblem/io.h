@@ -9,13 +9,12 @@ public:
 	io(string inFileName, string outFileName);
 	~io();
 
+	void write(int value);
+
 protected:
 	ifstream in;
 	ofstream out;
 
 	void read(int& v, int& e, int& source, int& dest);
-
-public:
-	void write(int value);
 };
 
