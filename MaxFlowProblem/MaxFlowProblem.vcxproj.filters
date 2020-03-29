@@ -57,6 +57,9 @@
     <ClCompile Include="matrix_io.cpp">
       <Filter>Исходные файлы\IO</Filter>
     </ClCompile>
+    <ClCompile Include="adjList_io.cpp">
+      <Filter>Исходные файлы\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myArray.h">
@@ -78,6 +81,9 @@
       <Filter>Файлы заголовков\IO</Filter>
     </ClInclude>
     <ClInclude Include="matrix_io.h">
+      <Filter>Файлы заголовков\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="adjList_io.h">
       <Filter>Файлы заголовков\IO</Filter>
     </ClInclude>
   </ItemGroup>
