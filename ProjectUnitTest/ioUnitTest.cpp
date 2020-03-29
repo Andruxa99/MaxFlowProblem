@@ -58,5 +58,27 @@ namespace ProjectUnitTests
 				for (int j = 1; j < new_list[i].size(); j++)
 					Assert::AreEqual(src_list[i][j].second, new_list[i][j].second);
 		}
+
+		TEST_METHOD(should_write_matrix_in_file)
+		{
+			matrix_io io("../ProjectUnitTest/testOutput.txt", "../ProjectUnitTest/testOutput.txt");
+			io.write(n), io.write(n * n), io.write(1), io.write(n);
+			for (int i = 1; i < n + 1; i++)
+				for (int j = 1; j < n + 1; j++)
+					io.write(i), io.write(j), io.write(value);
+
+			matrix<int> new_matrix;
+			int v, e, source, dest;
+			io.read(new_matrix, v, e, source, dest);
+
+			Assert::AreEqual(n, v);
+			Assert::AreEqual(n * n, e);
+			Assert::AreEqual(1, source);
+			Assert::AreEqual(n, dest);
+			for (size_t i = 1; i < new_matrix.getXSize(); i++)
+				for (size_t j = 1; j < new_matrix.getYSize(); j++)
+					Assert::AreEqual(value, new_matrix[i][j]);
+			
+		}
 	};
 }

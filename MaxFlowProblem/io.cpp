@@ -2,7 +2,7 @@
 
 io::io(string inFileName, string outFileName)
 {
-	in.open(inFileName);
+	in.open(inFileName, ios::app);
 	out.open(outFileName);
 }
 
@@ -19,5 +19,5 @@ void io::read(int& v, int& e, int& source, int& dest)
 
 void io::write(int value)
 {
-	out << value;
+	out << value << endl;
 }
