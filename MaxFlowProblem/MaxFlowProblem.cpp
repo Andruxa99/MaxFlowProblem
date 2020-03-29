@@ -1,18 +1,17 @@
 ﻿#include <iostream>
 #include "matrix_ff.h"
+#include "matrix_io.h"
 
 int main()
 {
+    matrix<int> graph;
     int v, e, source, dest;
-    cin >> v >> e >> source >> dest;
+    
+    matrix_io io("input.txt", "output.txt");
+    io.read(graph, v, e, source, dest);
 
-    matrix<int> matrix(v + 1, v + 1);
-    for (int i = 0, v1, v2, cap; i < e; i++) {
-        cin >> v1 >> v2 >> cap;
-        matrix[v1][v2] = cap;
-    }
-    matrix_ff ff(matrix, v, e, source, dest);
-    cout << ff.solve();
-
+    matrix_ff matrix_ff(graph, v, e, source, dest);
+    io.write(matrix_ff.solve());
+    
     return 0;
 }

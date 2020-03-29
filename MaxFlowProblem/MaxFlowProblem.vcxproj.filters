@@ -25,6 +25,12 @@
     <Filter Include="Файлы заголовков\Ford_Fulkerson">
       <UniqueIdentifier>{57762788-5642-416e-8c09-f5ab59a49921}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\IO">
+      <UniqueIdentifier>{11bda9a5-5f44-4c58-ae02-9ed8328c1a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\IO">
+      <UniqueIdentifier>{eb598805-cdb3-4737-9028-ccccee8490cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MaxFlowProblem.cpp">
@@ -45,6 +51,12 @@
     <ClCompile Include="adjList_ff.cpp">
       <Filter>Исходные файлы\Ford_Fulkerson</Filter>
     </ClCompile>
+    <ClCompile Include="io.cpp">
+      <Filter>Исходные файлы\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix_io.cpp">
+      <Filter>Исходные файлы\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myArray.h">
@@ -62,5 +74,19 @@
     <ClInclude Include="adjList_ff.h">
       <Filter>Файлы заголовков\Ford_Fulkerson</Filter>
     </ClInclude>
+    <ClInclude Include="io.h">
+      <Filter>Файлы заголовков\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix_io.h">
+      <Filter>Файлы заголовков\IO</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="output.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
 </Project>
