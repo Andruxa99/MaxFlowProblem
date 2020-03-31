@@ -60,6 +60,9 @@
     <ClCompile Include="adjList_io.cpp">
       <Filter>Исходные файлы\IO</Filter>
     </ClCompile>
+    <ClCompile Include="network_generator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myArray.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="adjList_io.h">
       <Filter>Файлы заголовков\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="network_generator.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
