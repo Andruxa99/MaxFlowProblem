@@ -63,17 +63,16 @@ namespace ProjectUnitTests
 
 		TEST_METHOD(should_write_in_file)
 		{
-			matrix_io io("../ProjectUnitTest/testOutput.txt", "../ProjectUnitTest/testOutput.txt");
-			io.write(n), io.write(n), io.write(1), io.write(n);
-			for (int i = 1; i < n + 1; i++)
-				for (int j = i + 1; j < n + 1; j++)
-					io.write(i), io.write(j), io.write(value);
-
 			int v, e, source, dest;
 			matrix<int> src_matrix(n + 1, n + 1), new_matrix;
 			src_matrix[1][2] = value;
 			src_matrix[1][3] = value;
 			src_matrix[2][3] = value;
+
+			matrix_io io("../ProjectUnitTest/testOutput.txt", "../ProjectUnitTest/testOutput.txt");
+			io.write(n), io.write(n), io.write(1), io.write(n);
+			io.write(src_matrix);
+
 			io.read(new_matrix, v, e, source, dest);
 
 			Assert::AreEqual(n, v);
@@ -83,7 +82,6 @@ namespace ProjectUnitTests
 			for (size_t i = 1; i < new_matrix.getXSize(); i++)
 				for (size_t j = 1; j < new_matrix.getYSize(); j++)
 					Assert::AreEqual(src_matrix[i][j], new_matrix[i][j]);
-			
 		}
 	};
 }

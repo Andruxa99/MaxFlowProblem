@@ -19,5 +19,15 @@ void io::read(int& v, int& e, int& source, int& dest)
 
 void io::write(int value)
 {
-	out << value << endl;
+	out << value << " ";
+}
+
+void io::write(const matrix<int> &graph)
+{
+	for (size_t i = 0; i < graph.getXSize(); i++)
+		for (size_t j = 0; j < graph.getYSize(); j++)
+			if (graph[i][j] != 0)
+				out << endl << i << " " << j << " " << graph[i][j];
+	out << endl;
+
 }
