@@ -159,6 +159,7 @@
     <ClCompile Include="ford_fulkersonUnitTest.cpp" />
     <ClCompile Include="ioUnitTest.cpp" />
     <ClCompile Include="matrixUnitTest.cpp" />
+    <ClCompile Include="network_generatorUnitTest.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
