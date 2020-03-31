@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+#include <ctime>
+#include <clocale>
 #include "matrix_ff.h"
 //#include "adjList_ff.h"
 #include "matrix_io.h"
@@ -7,12 +9,15 @@
 
 int main()
 {
+    setlocale(LC_CTYPE, "rus");
     matrix<int> graph;
     int v, e, source, dest;
 
+    cout << "Считывание входных данных из файла..." << endl;
     io io("paramsInput.txt", "networkInput.txt");
     io.read(v, e, source, dest);
 
+    cout << "Генерация сети..." << endl;
     network_generator generator(v, e, source, dest);
     graph = generator.generate();
 
@@ -23,7 +28,13 @@ int main()
     matrix_io.read(graph, v, e, source, dest);
 
     matrix_ff matrix_ff(graph, v, e, source, dest);
-    matrix_io.write(matrix_ff.solve());
+    cout << "Выполнение алгоритма..." << endl;
+    auto start = clock();
+    int result = matrix_ff.solve();
+    auto finish = clock();
+
+    matrix_io.write(result);
+    cout << "Время выполнения: " << (finish - start);
        
     return 0;
 }
