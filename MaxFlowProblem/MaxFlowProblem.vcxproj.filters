@@ -94,10 +94,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input.txt">
+    <Text Include="output.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
-    <Text Include="output.txt">
+    <Text Include="paramsInput.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="networkInput.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>

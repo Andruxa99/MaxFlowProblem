@@ -170,8 +170,9 @@
     <ClInclude Include="network_generator.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input.txt" />
+    <Text Include="networkInput.txt" />
     <Text Include="output.txt" />
+    <Text Include="paramsInput.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

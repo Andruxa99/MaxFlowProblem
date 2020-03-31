@@ -12,11 +12,10 @@ public:
 
 	void write(int value);
 	void write(const matrix<int> &graph);
+	void read(int& v, int& e, int& source, int& dest);
 
 protected:
 	ifstream in;
 	ofstream out;
-
-	void read(int& v, int& e, int& source, int& dest);
 };
 
