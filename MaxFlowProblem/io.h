@@ -1,4 +1,5 @@
 #pragma once
+#include "matrix.h"
 #include <string>
 #include <fstream>
 using namespace std;
@@ -10,6 +11,7 @@ public:
 	~io();
 
 	void write(int value);
+	void write(const matrix<int> &graph);
 
 protected:
 	ifstream in;

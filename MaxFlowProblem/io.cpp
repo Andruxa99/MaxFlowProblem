@@ -21,3 +21,13 @@ void io::write(int value)
 {
 	out << value << endl;
 }
+
+void io::write(const matrix<int> &graph)
+{
+	for (size_t i = 0; i < graph.getXSize(); i++) {
+		for (size_t j = 0; j < graph.getYSize(); j++)
+			out << graph[i][j] << " ";
+		out << endl;
+	}
+
+}
