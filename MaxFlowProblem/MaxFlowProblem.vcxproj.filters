@@ -31,6 +31,12 @@
     <Filter Include="Файлы заголовков\IO">
       <UniqueIdentifier>{eb598805-cdb3-4737-9028-ccccee8490cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Generator">
+      <UniqueIdentifier>{552fd58a-1676-4cf3-8f9b-91d946d98df9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Generator">
+      <UniqueIdentifier>{9e0ad80d-9cee-46d3-a9fc-9e2891cc71f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MaxFlowProblem.cpp">
@@ -61,7 +67,7 @@
       <Filter>Исходные файлы\IO</Filter>
     </ClCompile>
     <ClCompile Include="network_generator.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Generator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +96,7 @@
       <Filter>Файлы заголовков\IO</Filter>
     </ClInclude>
     <ClInclude Include="network_generator.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Generator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

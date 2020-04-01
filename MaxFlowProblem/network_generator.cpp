@@ -5,8 +5,6 @@ network_generator::network_generator(int v, int e, int source, int dest, int cap
 	: v(v), e(e), source(source), dest(dest), capacity(capacity) 
 {
 	graph = matrix<int>(v + 1, v + 1);
-	visited = new bool[v + 1];
-	fill(visited, visited + v + 1, 0);
 }
 
 
@@ -32,9 +30,8 @@ matrix<int> network_generator::generate()
 
 void network_generator::buildBasis(int v)
 {
-	if (v == dest) return;
-	graph[v][v + 1] = rand() % capacity + 1;
-	buildBasis(v + 1);
+	while (v != dest)
+		graph[v++][v] = rand() % capacity + 1;
 }
 
 int network_generator::buildEdge(int v)

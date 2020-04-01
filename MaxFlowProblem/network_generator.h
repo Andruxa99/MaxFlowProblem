@@ -9,7 +9,6 @@ public:
 	matrix<int> generate();
 private:
 	matrix<int> graph;
-	bool* visited;
 	int v, e, source, dest, capacity;
 
 	void buildBasis(int v);
