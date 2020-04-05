@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../MaxFlowProblem/myArray.cpp"
+#include "../MaxFlowProblem/myArray.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

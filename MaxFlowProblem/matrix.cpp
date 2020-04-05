@@ -2,9 +2,8 @@
 
 template<class T> 
 matrix<T>::matrix(size_t n, size_t m, T value)
-    : n(n), m(m)
+    : n(n), m(m), arr(new myArray<T>[n])
 {
-    arr = new myArray<T>[n];
     for (size_t i = 0; i < n; i++)
         arr[i] = myArray<T>(m, value);
 }

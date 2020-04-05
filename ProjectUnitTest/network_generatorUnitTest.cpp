@@ -39,8 +39,7 @@ namespace ProjectUnitTests
 			network_generator generator(v, e, source, dest);
 			matrix<int> graph = generator.generate();
 			int comp_count = 0;
-			auto visited = new bool[v + 1];
-			fill(visited, visited + v + 1, 0);
+			auto visited = new bool[v + 1]{};
 			for (size_t i = 1; i < v + 1; i++)
 				if (!visited[i]) {
 					dfs(i, visited, graph);

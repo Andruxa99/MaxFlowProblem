@@ -175,6 +175,11 @@
     <Text Include="testInput.txt" />
     <Text Include="testOutput.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MaxFlowProblem\MaxFlowProblem.vcxproj">
+      <Project>{11c88c5f-b081-43cb-b97d-d03742ee2d93}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

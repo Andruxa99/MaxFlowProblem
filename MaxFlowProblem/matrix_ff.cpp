@@ -9,7 +9,7 @@ int matrix_ff::find_flow(int v, int flow)
     visited[v] = true;
     for (int i = 1; i <= numOfVertex; i++) {
         if (!visited[i] && graph[v][i] > 0) {
-            int maxResult = find_flow(i, min(flow, graph[v][i]));
+            int maxResult = find_flow(i, std::min(flow, graph[v][i]));
             if (maxResult > 0) {
                 graph[v][i] -= maxResult;
                 graph[i][v] += maxResult;

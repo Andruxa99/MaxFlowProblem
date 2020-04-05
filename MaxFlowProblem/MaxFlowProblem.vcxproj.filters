@@ -42,12 +42,6 @@
     <ClCompile Include="MaxFlowProblem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="myArray.cpp">
-      <Filter>Исходные файлы\Array</Filter>
-    </ClCompile>
-    <ClCompile Include="matrix.cpp">
-      <Filter>Исходные файлы\Array</Filter>
-    </ClCompile>
     <ClCompile Include="ford_fulkerson.cpp">
       <Filter>Исходные файлы\Ford_Fulkerson</Filter>
     </ClCompile>

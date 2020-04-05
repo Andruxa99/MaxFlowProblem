@@ -1,6 +1,5 @@
 #include "myArray.h"
 #include <algorithm>
-using namespace std;
 
 template<class T>
 myArray<T>::myArray(size_t size, T value)

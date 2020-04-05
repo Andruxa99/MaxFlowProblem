@@ -36,7 +36,7 @@ void network_generator::buildBasis(int v)
 
 int network_generator::buildEdge(int v)
 {
-	vector<int> right;
+	std::vector<int> right;
 	for (size_t i = 1; i < graph[v].getSize(); i++)
 		if (v != i && graph[v][i] == 0)
 			right.push_back(i);

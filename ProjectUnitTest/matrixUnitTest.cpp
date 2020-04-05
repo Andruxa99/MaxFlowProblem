@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../MaxFlowProblem/matrix.cpp"
+#include "../MaxFlowProblem/matrix.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

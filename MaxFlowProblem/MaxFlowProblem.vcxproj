@@ -151,11 +151,9 @@
     <ClCompile Include="adjList_io.cpp" />
     <ClCompile Include="ford_fulkerson.cpp" />
     <ClCompile Include="io.cpp" />
-    <ClCompile Include="matrix.cpp" />
     <ClCompile Include="matrix_ff.cpp" />
     <ClCompile Include="matrix_io.cpp" />
     <ClCompile Include="MaxFlowProblem.cpp" />
-    <ClCompile Include="myArray.cpp" />
     <ClCompile Include="network_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
