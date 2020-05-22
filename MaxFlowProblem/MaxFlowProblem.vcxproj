@@ -148,29 +148,39 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="adjList_ff.cpp" />
-    <ClCompile Include="adjList_io.cpp" />
+    <ClCompile Include="adjList_network.cpp" />
+    <ClCompile Include="adj_list.cpp" />
     <ClCompile Include="ford_fulkerson.cpp" />
-    <ClCompile Include="io.cpp" />
-    <ClCompile Include="matrix_ff.cpp" />
-    <ClCompile Include="matrix_io.cpp" />
-    <ClCompile Include="MaxFlowProblem.cpp" />
+    <ClCompile Include="IMaxFlowFinder.cpp" />
+    <ClCompile Include="network_converter.cpp" />
     <ClCompile Include="network_generator.cpp" />
+    <ClCompile Include="network_io.cpp" />
+    <ClCompile Include="matrix_ff.cpp" />
+    <ClCompile Include="matrix_network.cpp" />
+    <ClCompile Include="MaxFlowProblem.cpp" />
+    <ClCompile Include="network_base.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="adjList_ff.h" />
-    <ClInclude Include="adjList_io.h" />
+    <ClInclude Include="adjList_network.h" />
+    <ClInclude Include="adj_list.h" />
     <ClInclude Include="ford_fulkerson.h" />
-    <ClInclude Include="io.h" />
-    <ClInclude Include="matrix.h" />
-    <ClInclude Include="matrix_ff.h" />
-    <ClInclude Include="matrix_io.h" />
-    <ClInclude Include="myArray.h" />
+    <ClInclude Include="IMaxFlowFinder.h" />
+    <ClInclude Include="matrix_network.h" />
+    <ClInclude Include="network_converter.h" />
     <ClInclude Include="network_generator.h" />
+    <ClInclude Include="network_io.h" />
+    <ClInclude Include="matrix.h" />
+    <ClInclude Include="matrix.hpp" />
+    <ClInclude Include="matrix_ff.h" />
+    <ClInclude Include="myArray.h" />
+    <ClInclude Include="myArray.hpp" />
+    <ClInclude Include="network_base.h" />
+    <ClInclude Include="network_params.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="networkInput.txt" />
-    <Text Include="output.txt" />
-    <Text Include="paramsInput.txt" />
+    <Text Include="network.txt" />
+    <Text Include="params.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

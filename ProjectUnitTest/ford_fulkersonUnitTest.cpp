@@ -3,6 +3,7 @@
 #include "../MaxFlowProblem/matrix_ff.cpp"
 #include "../MaxFlowProblem/adjList_ff.cpp"
 #include "../MaxFlowProblem/ford_fulkerson.cpp"
+using namespace std;
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

@@ -1,25 +1,40 @@
 #include "adjList_ff.h"
 #include <algorithm>
 
-adjList_ff::adjList_ff(graph g, int v, int e, int source, int dest)
-    : ford_fulkerson(v, e, source, dest), g(graph(g)) {}
+adjList_ff::adjList_ff(adjList_network network)
+    : ford_fulkerson(network), network(network.get_network()) {}
 
-int adjList_ff::find_flow(int v, int flow)
+std::string adjList_ff::get_name()
 {
-    if (v == dest) return flow;
-    visited[v] = true;
-    for (auto next : g[v]) {
-        if (!visited[next.first] && next.second > 0) {
-            int maxResult = find_flow(next.first, min(flow, next.second));
-            if (maxResult > 0) {
-                auto it = find_if(g[v].begin(), g[v].end(), [next](pair<int, int> p) -> bool {return p.first == next.first; });
-                g[v][distance(g[v].begin(), it)].second -= maxResult;
+    return ford_fulkerson::get_name() + " (список смежности)";
+}
 
-                it = find_if(g[next.first].begin(), g[next.first].end(), [v](pair<int, int> p) -> bool {return p.first == v; });
-                g[next.first][distance(g[next.first].begin(), it)].second += maxResult;
-                return maxResult;
+int adjList_ff::find_max_flow(int curNode, int curFlow)
+{
+    if (curNode == networkParams.dest) return curFlow;
+    visited[curNode] = true;
+    for (auto nextNode : network[curNode]) {
+        if (!visited[nextNode.first] && nextNode.second > 0) {
+            int maxFlow = find_max_flow(nextNode.first, std::min(curFlow, nextNode.second));
+            if (maxFlow > 0) {
+                run_flow(curNode, nextNode.first, maxFlow);
+                return maxFlow;
             }
         }
     }
     return 0;
+}
+
+void adjList_ff::run_forward_flow(int begNode, int endNode, int flow)
+{
+    auto it = find_if(network[begNode].begin(), network[begNode].end(), 
+        [endNode](auto p){return p.first == endNode; });
+    network[begNode][distance(network[begNode].begin(), it)].second -= flow;
+}
+
+void adjList_ff::run_reverse_flow(int begNode, int endNode, int flow)
+{
+    auto it = find_if(network[endNode].begin(), network[endNode].end(), 
+        [begNode](auto p){return p.first == begNode; });
+    network[endNode][distance(network[endNode].begin(), it)].second += flow;
 }

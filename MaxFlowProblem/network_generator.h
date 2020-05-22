@@ -1,17 +1,20 @@
 #pragma once
-#include "matrix.h"
 #include <vector>
+#include "network_params.h"
 
+typedef std::vector<std::tuple<int, int, int>> edges_list;
 class network_generator
 {
 public:
-	network_generator(int v, int e, int source, int dest, int capacity = 100);
-	matrix<int> generate();
-private:
-	matrix<int> graph;
-	int v, e, source, dest, capacity;
+	explicit network_generator(network_params params);
+	edges_list generate_network();
 
-	void buildBasis(int v);
-	int buildEdge(int v);
+private:
+	network_params params;
+	void build_basis(edges_list &network);
+	int select_begin_node();
+	int select_end_node(int begNode, const edges_list& network);
+	std::vector<int> select_available_nodes(int begNode, const edges_list& network);
+	void build_edge(int begNode, int endNode, edges_list& network);
 };
 

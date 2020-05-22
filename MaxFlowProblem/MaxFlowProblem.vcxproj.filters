@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Исходные файлы\Array">
-      <UniqueIdentifier>{61e1ad9d-401a-4718-94ca-cfa8bdfce813}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\Array">
-      <UniqueIdentifier>{67bc95d6-441d-419f-bef0-d290cd64f061}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\Ford_Fulkerson">
       <UniqueIdentifier>{9e9cecd3-a32f-4beb-bfbb-931dc1a8138d}</UniqueIdentifier>
     </Filter>
@@ -31,11 +25,26 @@
     <Filter Include="Файлы заголовков\IO">
       <UniqueIdentifier>{eb598805-cdb3-4737-9028-ccccee8490cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Generator">
-      <UniqueIdentifier>{552fd58a-1676-4cf3-8f9b-91d946d98df9}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\Network">
+      <UniqueIdentifier>{4dc81fc6-c8e5-42c3-853c-7226b1b45013}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\Generator">
-      <UniqueIdentifier>{9e0ad80d-9cee-46d3-a9fc-9e2891cc71f0}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\Network">
+      <UniqueIdentifier>{00148f78-805c-482d-b30a-ea6d5ec63858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Adj_list">
+      <UniqueIdentifier>{95d2706c-d1e2-4561-9a18-a9ba02776049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Adj_list">
+      <UniqueIdentifier>{8a498414-f437-45e3-9d5f-c7b3138c4996}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Finders">
+      <UniqueIdentifier>{d76d10cc-67ce-426b-a49b-215be5837664}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Finders">
+      <UniqueIdentifier>{63354bac-fbbf-4d5d-af5c-bc952117c968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Matrix">
+      <UniqueIdentifier>{67bc95d6-441d-419f-bef0-d290cd64f061}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,25 +60,37 @@
     <ClCompile Include="adjList_ff.cpp">
       <Filter>Исходные файлы\Ford_Fulkerson</Filter>
     </ClCompile>
-    <ClCompile Include="io.cpp">
+    <ClCompile Include="network_io.cpp">
       <Filter>Исходные файлы\IO</Filter>
     </ClCompile>
-    <ClCompile Include="matrix_io.cpp">
-      <Filter>Исходные файлы\IO</Filter>
+    <ClCompile Include="matrix_network.cpp">
+      <Filter>Исходные файлы\Network</Filter>
     </ClCompile>
-    <ClCompile Include="adjList_io.cpp">
-      <Filter>Исходные файлы\IO</Filter>
+    <ClCompile Include="network_base.cpp">
+      <Filter>Исходные файлы\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="adjList_network.cpp">
+      <Filter>Исходные файлы\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="adj_list.cpp">
+      <Filter>Исходные файлы\Adj_list</Filter>
+    </ClCompile>
+    <ClCompile Include="IMaxFlowFinder.cpp">
+      <Filter>Исходные файлы\Finders</Filter>
+    </ClCompile>
+    <ClCompile Include="network_converter.cpp">
+      <Filter>Исходные файлы\Network</Filter>
     </ClCompile>
     <ClCompile Include="network_generator.cpp">
-      <Filter>Исходные файлы\Generator</Filter>
+      <Filter>Исходные файлы\Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myArray.h">
-      <Filter>Файлы заголовков\Array</Filter>
+      <Filter>Файлы заголовков\Matrix</Filter>
     </ClInclude>
     <ClInclude Include="matrix.h">
-      <Filter>Файлы заголовков\Array</Filter>
+      <Filter>Файлы заголовков\Matrix</Filter>
     </ClInclude>
     <ClInclude Include="matrix_ff.h">
       <Filter>Файлы заголовков\Ford_Fulkerson</Filter>
@@ -80,27 +101,45 @@
     <ClInclude Include="adjList_ff.h">
       <Filter>Файлы заголовков\Ford_Fulkerson</Filter>
     </ClInclude>
-    <ClInclude Include="io.h">
+    <ClInclude Include="myArray.hpp">
+      <Filter>Файлы заголовков\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix.hpp">
+      <Filter>Файлы заголовков\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="network_io.h">
       <Filter>Файлы заголовков\IO</Filter>
     </ClInclude>
-    <ClInclude Include="matrix_io.h">
-      <Filter>Файлы заголовков\IO</Filter>
+    <ClInclude Include="network_base.h">
+      <Filter>Файлы заголовков\Network</Filter>
     </ClInclude>
-    <ClInclude Include="adjList_io.h">
-      <Filter>Файлы заголовков\IO</Filter>
+    <ClInclude Include="adj_list.h">
+      <Filter>Файлы заголовков\Adj_list</Filter>
+    </ClInclude>
+    <ClInclude Include="IMaxFlowFinder.h">
+      <Filter>Файлы заголовков\Finders</Filter>
+    </ClInclude>
+    <ClInclude Include="network_converter.h">
+      <Filter>Файлы заголовков\Network</Filter>
     </ClInclude>
     <ClInclude Include="network_generator.h">
-      <Filter>Файлы заголовков\Generator</Filter>
+      <Filter>Файлы заголовков\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="network_params.h">
+      <Filter>Файлы заголовков\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix_network.h">
+      <Filter>Файлы заголовков\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="adjList_network.h">
+      <Filter>Файлы заголовков\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="output.txt">
+    <Text Include="params.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
-    <Text Include="paramsInput.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="networkInput.txt">
+    <Text Include="network.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>

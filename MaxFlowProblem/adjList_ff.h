@@ -1,17 +1,18 @@
 #pragma once
 #include "ford_fulkerson.h"
-#include <vector>
-using namespace std;
-
-typedef vector<vector<pair<int, int>>> graph;
+#include "adjList_network.h"
 
 class adjList_ff : public ford_fulkerson
 {
 public:
-	adjList_ff(graph g, int v, int e, int source, int dest);
-private:
-	graph g;
+	explicit adjList_ff(adjList_network network);
 
-	int find_flow(int v, int flow);
+	std::string get_name() override final;
+private:
+	adj_list network;
+
+	int find_max_flow(int curNode, int curFlow) override;
+	void run_forward_flow(int begNode, int endNode, int flow) override;
+	void run_reverse_flow(int begNode, int endNode, int flow) override;
 };
 

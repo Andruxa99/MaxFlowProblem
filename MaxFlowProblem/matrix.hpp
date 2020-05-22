@@ -1,6 +1,8 @@
+#pragma once
 #include "matrix.h"
+#include <algorithm>
 
-template<class T> 
+template<class T>
 matrix<T>::matrix(size_t n, size_t m, T value)
     : n(n), m(m), arr(new myArray<T>[n])
 {
@@ -8,7 +10,13 @@ matrix<T>::matrix(size_t n, size_t m, T value)
         arr[i] = myArray<T>(m, value);
 }
 
-template<class T> 
+template<class T>
+matrix<T>::~matrix() 
+{ 
+    delete[] arr; 
+}
+
+template<class T>
 matrix<T>::matrix(const matrix<T>& a)
     :n(a.n), m(a.m), arr(new myArray<T>[a.n])
 {
@@ -20,9 +28,15 @@ matrix<T>::matrix(const matrix<T>& a)
 }
 
 template<class T>
-matrix<T>::~matrix()
-{
-    delete[] arr;
+size_t matrix<T>::get_x_size() const 
+{ 
+    return n; 
+}
+
+template<class T>
+size_t matrix<T>::get_y_size() const 
+{ 
+    return m; 
 }
 
 template<class T>
@@ -33,23 +47,15 @@ void matrix<T>::fill(T value)
 }
 
 template<class T>
-void matrix<T>::swap(matrix<T>& a)
-{
-    std::swap(n, a.n);
-    std::swap(m, a.m);
-    std::swap(arr, a.arr);
+myArray<T> matrix<T>::operator[](size_t index) const 
+{ 
+    return arr[index]; 
 }
 
 template<class T>
-myArray<T> matrix<T>::operator[](size_t index) const
-{
-    return arr[index];
-}
-
-template<class T>
-myArray<T>& matrix<T>::operator[](size_t index)
-{
-    return arr[index];
+myArray<T>& matrix<T>::operator[](size_t index) 
+{ 
+    return arr[index]; 
 }
 
 template<class T>
@@ -58,4 +64,12 @@ matrix<T>& matrix<T>::operator=(const matrix<T>& a)
     if (&a != this)
         matrix<T>(a).swap(*this);
     return *this;
+}
+
+template<class T>
+void matrix<T>::swap(matrix<T>& a)
+{
+    std::swap(n, a.n);
+    std::swap(m, a.m);
+    std::swap(arr, a.arr);
 }

@@ -1,46 +1,73 @@
 #include "network_generator.h"
-#include <iostream>
+#include <ctime>
+#include <set>
+#include <tuple>
+#include <algorithm>
 
-network_generator::network_generator(int v, int e, int source, int dest, int capacity)
-	: v(v), e(e), source(source), dest(dest), capacity(capacity) 
+network_generator::network_generator(network_params params)
+	: params(params)
 {
-	graph = matrix<int>(v + 1, v + 1);
 }
 
-
-matrix<int> network_generator::generate()
+edges_list network_generator::generate_network()
 {
-	buildBasis(source);
-	while (e - v + 1 > 0)
+	srand(static_cast<unsigned>(time(NULL)));
+	edges_list network;
+	build_basis(network);
+	int numOfBaseEdges = params.numOfNodes - 1;
+	int edgeCounter = params.numOfEdges - numOfBaseEdges;
+	while (edgeCounter > 0)
 	{
-		int v1, v2;
+		int begVertex, endVertex;
 		while (true)
 		{
-			v1 = rand() % v + 1;
-			if (v1 == dest) continue;
-			v2 = buildEdge(v1);
-			if (v2 != -1 && v2 != source) break;
+			begVertex = select_begin_node();
+			if (begVertex == params.dest) continue;
+			endVertex = select_end_node(begVertex, network);
+			if (endVertex != -1 && endVertex != params.source) break;
 		}
-		graph[v1][v2] = rand() % capacity + 1;
-		e--;
+		build_edge(begVertex, endVertex, network);
+		edgeCounter--;
 	}
-
-	return graph;
+	return network;
 }
 
-void network_generator::buildBasis(int v)
+void network_generator::build_basis(edges_list& network)
 {
-	while (v != dest)
-		graph[v++][v] = rand() % capacity + 1;
+	int curVertex = params.source;
+	while (curVertex != params.numOfNodes)
+		build_edge(curVertex++, curVertex, network);
 }
 
-int network_generator::buildEdge(int v)
+void network_generator::build_edge(int begNode, int endNode, edges_list& network) 
 {
-	std::vector<int> right;
-	for (size_t i = 1; i < graph[v].getSize(); i++)
-		if (v != i && graph[v][i] == 0)
-			right.push_back(i);
-	return right.size() != 0 
-		? right[rand() % right.size()]
+	network.push_back({ begNode, endNode, rand() % params.maxWeight + 1 });
+}
+
+int network_generator::select_begin_node()
+{
+	return rand() % params.numOfNodes + 1;
+}
+
+int network_generator::select_end_node(int begNode, const edges_list& network)
+{
+	auto availableNodes = select_available_nodes(begNode, network);
+	int numOfAvailableNodes = availableNodes.size();
+	return numOfAvailableNodes != 0
+		? availableNodes[rand() % numOfAvailableNodes]
 		: -1;
+}
+
+std::vector<int> network_generator::select_available_nodes(int begNode, const edges_list& network)
+{
+	std::set<int> badNodes{ begNode };
+	for (auto i : network) {
+		if (std::get<0>(i) == begNode)
+			badNodes.insert(std::get<1>(i));
+	}
+	std::vector<int> availableNodes;
+	for (int i = 1; i <= params.numOfNodes; i++)
+		if (i != params.source && badNodes.find(i) == badNodes.end())
+			availableNodes.push_back(i);
+	return availableNodes;
 }

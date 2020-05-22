@@ -1,21 +1,35 @@
 #include "matrix_ff.h"
 
-matrix_ff::matrix_ff(const matrix<int>& g, int v, int e, int source, int dest)
-    : ford_fulkerson(v, e, source, dest), graph(matrix<int>(g)) {}
+matrix_ff::matrix_ff(matrix_network network)
+    :  ford_fulkerson(network), network(network.get_network()){}
 
-int matrix_ff::find_flow(int v, int flow)
+std::string matrix_ff::get_name()
 {
-    if (v == dest) return flow;
-    visited[v] = true;
-    for (int i = 1; i <= numOfVertex; i++) {
-        if (!visited[i] && graph[v][i] > 0) {
-            int maxResult = find_flow(i, std::min(flow, graph[v][i]));
-            if (maxResult > 0) {
-                graph[v][i] -= maxResult;
-                graph[i][v] += maxResult;
-                return maxResult;
+    return ford_fulkerson::get_name() + " (матрица смежности)";
+}
+
+int matrix_ff::find_max_flow(int curNode, int curFlow)
+{
+    if (curNode == networkParams.dest) return curFlow;
+    visited[curNode] = true;
+    for (int i = 1; i <= networkParams.numOfNodes; i++) {
+        if (!visited[i] && network[curNode][i] > 0) {
+            int maxFlow = find_max_flow(i, std::min(curFlow, network[curNode][i]));
+            if (maxFlow > 0) {
+                run_flow(curNode, i, maxFlow);
+                return maxFlow;
             }
         }
     }
     return 0;
+}
+
+void matrix_ff::run_forward_flow(int begNode, int endNode, int flow)
+{
+    network[begNode][endNode] -= flow;
+}
+
+void matrix_ff::run_reverse_flow(int begNode, int endNode, int flow)
+{
+    network[endNode][begNode] += flow;
 }

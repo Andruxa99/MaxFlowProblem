@@ -1,14 +1,19 @@
 #pragma once
 #include "ford_fulkerson.h"
+#include "matrix_network.h"
 #include "matrix.h"
 
 class matrix_ff : public ford_fulkerson
 {
 public:
-	matrix_ff(const matrix<int>& g, int v, int e, int source, int dest);
-private:
-	matrix<int> graph;
+	explicit matrix_ff(matrix_network network);
 
-	int find_flow(int v, int flow);
+	std::string get_name() override final;
+private:
+	matrix<int> network;
+
+	int find_max_flow(int curNode, int curFlow) override;
+	void run_forward_flow(int begNode, int endNode, int flow) override;
+	void run_reverse_flow(int begNode, int endNode, int flow) override;
 };
 
