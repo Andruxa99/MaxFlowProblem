@@ -1,7 +1,5 @@
 #pragma once
-#include "IMaxFlowFinder.h"
 #include "network_base.h"
-#include "network_params.h"
 
 class ford_fulkerson : public IMaxFlowFinder
 {

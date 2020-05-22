@@ -1,6 +1,5 @@
 #pragma once
 #include "network_base.h"
-#include "network_params.h"
 #include "matrix.h"
 
 class matrix_network : public network_base

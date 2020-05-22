@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../MaxFlowProblem/myArray.h"
-
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace ProjectUnitTests
@@ -15,13 +14,13 @@ namespace ProjectUnitTests
 		TEST_METHOD(should_create_array_with_zero_length)
 		{
 			myArray<int> array;
-			Assert::AreEqual(0, (int)array.getSize());
+			Assert::AreEqual(0, (int)array.get_size());
 		}
 
 		TEST_METHOD(should_create_array_with_non_zero_length)
 		{
 			myArray<int> array(size);
-			Assert::AreEqual(size, array.getSize());
+			Assert::AreEqual(size, array.get_size());
 		}
 
 		TEST_METHOD(should_get_values_by_index)

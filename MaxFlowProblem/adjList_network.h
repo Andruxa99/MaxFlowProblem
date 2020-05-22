@@ -1,6 +1,5 @@
 #pragma once
 #include "network_base.h"
-#include "network_params.h"
 #include "adj_list.h"
 
 class adjList_network : public network_base

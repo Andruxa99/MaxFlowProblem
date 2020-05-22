@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../MaxFlowProblem/matrix.h"
-
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace ProjectUnitTests
@@ -16,15 +15,15 @@ namespace ProjectUnitTests
 		TEST_METHOD(should_create_matrix_with_zero_length)
 		{
 			matrix<int> matrix;
-			Assert::AreEqual(0, (int)matrix.getXSize());
-			Assert::AreEqual(0, (int)matrix.getYSize());
+			Assert::AreEqual(0, (int)matrix.get_x_size());
+			Assert::AreEqual(0, (int)matrix.get_y_size());
 		}
 
 		TEST_METHOD(should_create_matrix_with_non_zero_length)
 		{
 			matrix<int> matrix(n);
-			Assert::AreEqual(n, matrix.getXSize());
-			Assert::AreEqual(0, (int)matrix.getYSize());
+			Assert::AreEqual(n, matrix.get_x_size());
+			Assert::AreEqual(0, (int)matrix.get_y_size());
 		}
 
 		TEST_METHOD(should_get_values_by_index)

@@ -1,6 +1,5 @@
 #include "network_converter.h"
 #include <tuple>
-#include <iostream>
 
 matrix<int> network_converter::to_adj_matrix(const edges_list& network, network_params params)
 {

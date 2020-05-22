@@ -27,10 +27,10 @@
     <ClCompile Include="ford_fulkersonUnitTest.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="ioUnitTest.cpp">
+    <ClCompile Include="network_generatorUnitTest.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="network_generatorUnitTest.cpp">
+    <ClCompile Include="network_converterUnitTest.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
