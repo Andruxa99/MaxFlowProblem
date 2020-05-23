@@ -1,4 +1,5 @@
 #include "matrix_dinic.h"
+#include "flow_runner.h"
 #include <queue>
 
 matrix_dinic::matrix_dinic(matrix_network network)
@@ -17,7 +18,7 @@ int matrix_dinic::find_max_flow(int curNode, int curFlow)
 		if (distances[i] == distances[curNode] + 1) {
 			int maxFlow = find_max_flow(i, std::min(curFlow, network[curNode][i]));
 			if (maxFlow > 0) {
-				run_flow(curNode, i, maxFlow);
+				flow_runner::run_flow_in_matrix_network(curNode, i, maxFlow, network);
 				return maxFlow;
 			}
 		}
@@ -42,14 +43,4 @@ bool matrix_dinic::bfs()
 			}
 	}
 	return distances[networkParams.dest] != INT_MAX;
-}
-
-void matrix_dinic::run_forward_flow(int begNode, int endNode, int flow)
-{
-	network[begNode][endNode] -= flow;
-}
-
-void matrix_dinic::run_reverse_flow(int begNode, int endNode, int flow)
-{
-	network[endNode][begNode] += flow;
 }

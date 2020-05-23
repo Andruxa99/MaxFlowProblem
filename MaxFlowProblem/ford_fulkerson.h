@@ -15,8 +15,5 @@ protected:
 	network_params networkParams;
 
 	virtual int find_max_flow(int curVertex, int curFlow);
-	void run_flow(int begNode, int endNode, int flow);
-	virtual void run_forward_flow(int begNode, int endNode, int flow);
-	virtual void run_reverse_flow(int begNode, int endNode, int flow);
 };
 

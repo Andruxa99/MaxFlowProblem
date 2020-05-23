@@ -43,13 +43,3 @@ bool dinic::bfs()
 	distances[networkParams.source] = 0;
 	return false;
 }
-
-void dinic::run_flow(int begNode, int endNode, int flow)
-{
-	run_forward_flow(begNode, endNode, flow);
-	run_reverse_flow(begNode, endNode, flow);
-}
-
-void dinic::run_forward_flow(int begNode, int endNode, int flow) {}
-
-void dinic::run_reverse_flow(int begNode, int endNode, int flow) {}

@@ -16,8 +16,5 @@ protected:
 
 	virtual int find_max_flow(int curVertex, int curFlow);
 	virtual bool bfs();
-	void run_flow(int begNode, int endNode, int flow);
-	virtual void run_forward_flow(int begNode, int endNode, int flow);
-	virtual void run_reverse_flow(int begNode, int endNode, int flow);
 };
 

@@ -36,13 +36,3 @@ int ford_fulkerson::find_max_flow(int begVertex, int curFlow)
 {
     return 0;
 }
-
-void ford_fulkerson::run_flow(int begNode, int endNode, int flow)
-{
-    run_forward_flow(begNode, endNode, flow);
-    run_reverse_flow(begNode, endNode, flow);
-}
-
-void ford_fulkerson::run_forward_flow(int begNode, int endNode, int flow) {}
-
-void ford_fulkerson::run_reverse_flow(int begNode, int endNode, int flow) {}

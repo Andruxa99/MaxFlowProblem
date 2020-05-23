@@ -1,4 +1,5 @@
 #include "adjList_ff.h"
+#include "flow_runner.h"
 #include <algorithm>
 
 adjList_ff::adjList_ff(adjList_network network)
@@ -17,24 +18,10 @@ int adjList_ff::find_max_flow(int curNode, int curFlow)
         if (!visited[nextNode.first] && nextNode.second > 0) {
             int maxFlow = find_max_flow(nextNode.first, std::min(curFlow, nextNode.second));
             if (maxFlow > 0) {
-                run_flow(curNode, nextNode.first, maxFlow);
+                flow_runner::run_flow_in_adjList_network(curNode, nextNode.first, maxFlow, network);
                 return maxFlow;
             }
         }
     }
     return 0;
-}
-
-void adjList_ff::run_forward_flow(int begNode, int endNode, int flow)
-{
-    auto it = find_if(network[begNode].begin(), network[begNode].end(), 
-        [endNode](auto p){return p.first == endNode; });
-    network[begNode][distance(network[begNode].begin(), it)].second -= flow;
-}
-
-void adjList_ff::run_reverse_flow(int begNode, int endNode, int flow)
-{
-    auto it = find_if(network[endNode].begin(), network[endNode].end(), 
-        [begNode](auto p){return p.first == begNode; });
-    network[endNode][distance(network[endNode].begin(), it)].second += flow;
 }

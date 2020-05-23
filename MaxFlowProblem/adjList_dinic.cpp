@@ -1,4 +1,5 @@
 #include "adjList_dinic.h"
+#include "flow_runner.h"
 #include <algorithm>
 #include <queue>
 
@@ -20,7 +21,7 @@ int adjList_dinic::find_max_flow(int curNode, int curFlow)
 				int maxFlow = 0;
 				maxFlow = find_max_flow(nextNode.first, std::min(curFlow, nextNode.second));
 				if (maxFlow > 0) {
-					run_flow(curNode, nextNode.first, maxFlow);
+					flow_runner::run_flow_in_adjList_network(curNode, nextNode.first, maxFlow, network);
 					return maxFlow;
 				}
 			}
@@ -46,18 +47,4 @@ bool adjList_dinic::bfs()
 		}
 	}
 	return distances[networkParams.dest] != INT_MAX;
-}
-
-void adjList_dinic::run_forward_flow(int begNode, int endNode, int flow)
-{
-	auto it = find_if(network[begNode].begin(), network[begNode].end(),
-		[endNode](auto p) {return p.first == endNode; });
-	network[begNode][distance(network[begNode].begin(), it)].second -= flow;
-}
-
-void adjList_dinic::run_reverse_flow(int begNode, int endNode, int flow)
-{
-	auto it = find_if(network[endNode].begin(), network[endNode].end(),
-		[begNode](auto p) {return p.first == begNode; });
-	network[endNode][distance(network[endNode].begin(), it)].second += flow;
 }

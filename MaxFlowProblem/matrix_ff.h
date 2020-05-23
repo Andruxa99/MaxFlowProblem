@@ -12,7 +12,5 @@ private:
 	matrix<int> network;
 
 	int find_max_flow(int curNode, int curFlow) override;
-	void run_forward_flow(int begNode, int endNode, int flow) override;
-	void run_reverse_flow(int begNode, int endNode, int flow) override;
 };
 

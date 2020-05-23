@@ -152,6 +152,7 @@
     <ClCompile Include="adjList_network.cpp" />
     <ClCompile Include="adj_list.cpp" />
     <ClCompile Include="dinic.cpp" />
+    <ClCompile Include="flow_runner.cpp" />
     <ClCompile Include="ford_fulkerson.cpp" />
     <ClCompile Include="IMaxFlowFinder.cpp" />
     <ClCompile Include="matrix_dinic.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="adjList_network.h" />
     <ClInclude Include="adj_list.h" />
     <ClInclude Include="dinic.h" />
+    <ClInclude Include="flow_runner.h" />
     <ClInclude Include="ford_fulkerson.h" />
     <ClInclude Include="IMaxFlowFinder.h" />
     <ClInclude Include="matrix_dinic.h" />

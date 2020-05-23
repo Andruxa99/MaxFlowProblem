@@ -102,10 +102,12 @@ edges_list generate_network(const network_params& networkParams) {
 std::vector<IMaxFlowFinder*> create_finders(std::vector<network_base*> networks)
 {
     std::vector<IMaxFlowFinder*> finders;
+    begTime = clock();
     auto ff_finders = create_ford_fulkerson_finders(networks);
     add_finders(finders, ff_finders);
     auto dinic_finders = create_dinic_finders(networks);
     add_finders(finders, dinic_finders);
+    endTime = clock();
     return finders;
 }
 

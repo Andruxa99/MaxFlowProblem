@@ -1,4 +1,5 @@
 #include "matrix_ff.h"
+#include "flow_runner.h"
 
 matrix_ff::matrix_ff(matrix_network network)
     :  ford_fulkerson(network), network(network.get_network()){}
@@ -16,20 +17,10 @@ int matrix_ff::find_max_flow(int curNode, int curFlow)
         if (!visited[i] && network[curNode][i] > 0) {
             int maxFlow = find_max_flow(i, std::min(curFlow, network[curNode][i]));
             if (maxFlow > 0) {
-                run_flow(curNode, i, maxFlow);
+                flow_runner::run_flow_in_matrix_network(curNode, i, maxFlow, network);
                 return maxFlow;
             }
         }
     }
     return 0;
-}
-
-void matrix_ff::run_forward_flow(int begNode, int endNode, int flow)
-{
-    network[begNode][endNode] -= flow;
-}
-
-void matrix_ff::run_reverse_flow(int begNode, int endNode, int flow)
-{
-    network[endNode][begNode] += flow;
 }
