@@ -46,6 +46,12 @@
     <Filter Include="Файлы заголовков\Matrix">
       <UniqueIdentifier>{67bc95d6-441d-419f-bef0-d290cd64f061}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Dinic">
+      <UniqueIdentifier>{d5686c32-d2b5-4581-bb4b-7437593da6d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Dinic">
+      <UniqueIdentifier>{21025a56-8577-4f0b-a67c-2f6beeb7fa9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MaxFlowProblem.cpp">
@@ -83,6 +89,12 @@
     </ClCompile>
     <ClCompile Include="network_generator.cpp">
       <Filter>Исходные файлы\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix_dinic.cpp">
+      <Filter>Исходные файлы\Dinic</Filter>
+    </ClCompile>
+    <ClCompile Include="dinic.cpp">
+      <Filter>Исходные файлы\Dinic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +145,12 @@
     </ClInclude>
     <ClInclude Include="adjList_network.h">
       <Filter>Файлы заголовков\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix_dinic.h">
+      <Filter>Файлы заголовков\Dinic</Filter>
+    </ClInclude>
+    <ClInclude Include="dinic.h">
+      <Filter>Файлы заголовков\Dinic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

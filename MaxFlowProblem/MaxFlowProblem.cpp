@@ -12,6 +12,7 @@
 #include "adjList_network.h"
 #include "matrix_ff.h"
 #include "adjList_ff.h"
+#include "matrix_dinic.h"
 
 
 network_params read_network_params(network_io& ioStream);
@@ -21,6 +22,7 @@ adjList_network* create_adjList_network(const edges_list& network, const network
 edges_list generate_network(const network_params& networkParams);
 std::vector<IMaxFlowFinder*> create_finders(std::vector<network_base*> networks);
 std::vector<ford_fulkerson*> create_ford_fulkerson_finders(std::vector<network_base*> networks);
+std::vector<dinic*> create_dinic_finders(std::vector<network_base*> networks);
 void run_algorithms(std::vector<IMaxFlowFinder*> finders);
 
 clock_t begTime, endTime, runTime;
@@ -49,7 +51,7 @@ int main()
     endTime = clock();
     std::cout << "\tok\t" << endTime - begTime << " мс." << '\n';
 
-    std::cout << "Программа успешно выполнена!" << '\n';
+    std::cout << "\nПрограмма успешно выполнена!" << '\n';
     for (auto network : allDiffNetworks)
         delete network;
 
@@ -97,6 +99,9 @@ std::vector<IMaxFlowFinder*> create_finders(std::vector<network_base*> networks)
     auto ff_finders = create_ford_fulkerson_finders(networks);
     for (auto finder : ff_finders)
         finders.push_back(finder);
+    auto dinic_finders = create_dinic_finders(networks);
+    for (auto finder : dinic_finders)
+        finders.push_back(finder);
     return finders;
 }
 
@@ -112,12 +117,21 @@ std::vector<ford_fulkerson*> create_ford_fulkerson_finders(std::vector<network_b
     return ff_finders;
 }
 
+std::vector<dinic*> create_dinic_finders(std::vector<network_base*> networks)
+{
+    std::vector<dinic*> dinic_finders;
+    matrix_network* m_network = dynamic_cast<matrix_network*>(networks[0]);
+    if (m_network != nullptr)
+        dinic_finders.push_back(new matrix_dinic(*m_network));
+    return dinic_finders;
+}
+
 void run_algorithms(std::vector<IMaxFlowFinder*> finders)
 {
-    for (size_t i = 0; i < finders.size(); i++) {
-        int result = finders[i]->solve();
-        std::cout << '\n' << finders[i]->get_name() << std::endl
+    for (auto finder : finders) {
+        int result = finder->solve();
+        std::cout << '\n' << finder->get_name() << std::endl
             << "\t" << "Максимальный поток: " << result << std::endl
-            << "\t" << "Время выполнения алгоритма: " << finders[i]->get_running_time() << " мс." << '\n';
+            << "\t" << "Время выполнения алгоритма: " << finder->get_running_time() << " мс." << '\n';
     }
 }
