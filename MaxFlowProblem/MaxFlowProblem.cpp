@@ -3,6 +3,8 @@
 #include <vector>
 #include <tuple>
 #include <ctime>
+#include <string>
+#include <stdarg.h>
 #include "IMaxFlowFinder.h"
 #include "network_params.h"
 #include "network_generator.h"
@@ -15,16 +17,17 @@
 #include "matrix_dinic.h"
 #include "adjList_dinic.h"
 
-
 network_params read_network_params(network_io& ioStream);
 std::vector<network_base*> create_networks(const edges_list& network, const network_params& networkParams);
 matrix_network* create_matrix_network(const edges_list& network, const network_params& networkParams);
 adjList_network* create_adjList_network(const edges_list& network, const network_params& networkParams);
 edges_list generate_network(const network_params& networkParams);
 std::vector<IMaxFlowFinder*> create_finders(std::vector<network_base*> networks);
-std::vector<ford_fulkerson*> create_ford_fulkerson_finders(std::vector<network_base*> networks);
-std::vector<dinic*> create_dinic_finders(std::vector<network_base*> networks);
+std::vector<IMaxFlowFinder*> create_ford_fulkerson_finders(std::vector<network_base*> networks);
+std::vector<IMaxFlowFinder*> create_dinic_finders(std::vector<network_base*> networks);
+void add_finders(std::vector<IMaxFlowFinder*>& oldFinders, std::vector<IMaxFlowFinder*> newFinders);
 void run_algorithms(std::vector<IMaxFlowFinder*> finders);
+void print_message(std::string pattern, ...);
 
 clock_t begTime, endTime, runTime;
 
@@ -33,26 +36,28 @@ int main()
     setlocale(LC_CTYPE, "rus");
     network_io ioStream("params.txt", "network.txt");
     auto networkParams = read_network_params(ioStream);
-    std::cout << "Генерация сети...";
+    print_message("s", "Генерация сети...");
     auto network = generate_network(networkParams);
-    std::cout << "\tok\t" << endTime - begTime << " мс." << '\n';
+    print_message("siss", "\tok\t", endTime - begTime, " мс.", "\n");
 
-    std::cout << "Преобразования сети...";
+    print_message("s", "Преобразования сети...");
     auto allDiffNetworks = create_networks(network, networkParams);
-    std::cout << "\tok\t" << endTime - begTime << " мс." << '\n';
+    print_message("siss", "\tok\t", endTime - begTime, " мс.", "\n");
 
+    print_message("s", "Создание алгоритмов...");
     auto finders = create_finders(allDiffNetworks);
+    print_message("siss", "\tok\t", endTime - begTime, " мс.", "\n");
 
-    std::cout << "Исполнение алгоритмов...";
+    print_message("s", "Исполнение алгоритмов...");
     run_algorithms(finders);
 
-    std::cout << "Печать данных сети...";
+    print_message("s", "Печать данных сети...");
     begTime = clock();
     ioStream.write_network(network, networkParams);
     endTime = clock();
-    std::cout << "\tok\t" << endTime - begTime << " мс." << '\n';
+    print_message("siss", "\tok\t", endTime - begTime, " мс.", "\n");
 
-    std::cout << "\nПрограмма успешно выполнена!" << '\n';
+    print_message("sss", "\nПрограмма успешно выполнена!", "\n", "\a");
     for (auto network : allDiffNetworks)
         delete network;
 
@@ -70,8 +75,8 @@ std::vector<network_base*> create_networks(const edges_list& network, const netw
 {
     std::vector<network_base*> networks;
     begTime = clock();
-    networks.push_back(create_matrix_network(network, networkParams));
-    networks.push_back(create_adjList_network(network, networkParams));
+    networks.emplace_back(create_matrix_network(network, networkParams));
+    networks.emplace_back(create_adjList_network(network, networkParams));
     endTime = clock();
     return networks;
 }
@@ -98,36 +103,39 @@ std::vector<IMaxFlowFinder*> create_finders(std::vector<network_base*> networks)
 {
     std::vector<IMaxFlowFinder*> finders;
     auto ff_finders = create_ford_fulkerson_finders(networks);
-    for (auto finder : ff_finders)
-        finders.push_back(finder);
+    add_finders(finders, ff_finders);
     auto dinic_finders = create_dinic_finders(networks);
-    for (auto finder : dinic_finders)
-        finders.push_back(finder);
+    add_finders(finders, dinic_finders);
     return finders;
 }
 
-std::vector<ford_fulkerson*> create_ford_fulkerson_finders(std::vector<network_base*> networks)
+std::vector<IMaxFlowFinder*> create_ford_fulkerson_finders(std::vector<network_base*> networks)
 {
-    std::vector<ford_fulkerson*> ff_finders;
+    std::vector<IMaxFlowFinder*> ff_finders;
     matrix_network *m_network = dynamic_cast<matrix_network*>(networks[0]);
     if (m_network != nullptr)
-        ff_finders.push_back(new matrix_ff(*m_network));
+        ff_finders.emplace_back(new matrix_ff(*m_network));
     adjList_network *l_network = dynamic_cast<adjList_network*>(networks[1]);
     if (l_network != nullptr)
-        ff_finders.push_back(new adjList_ff(*l_network));
+        ff_finders.emplace_back(new adjList_ff(*l_network));
     return ff_finders;
 }
 
-std::vector<dinic*> create_dinic_finders(std::vector<network_base*> networks)
+std::vector<IMaxFlowFinder*> create_dinic_finders(std::vector<network_base*> networks)
 {
-    std::vector<dinic*> dinic_finders;
+    std::vector<IMaxFlowFinder*> dinic_finders;
     matrix_network* m_network = dynamic_cast<matrix_network*>(networks[0]);
     if (m_network != nullptr)
-        dinic_finders.push_back(new matrix_dinic(*m_network));
+        dinic_finders.emplace_back(new matrix_dinic(*m_network));
     adjList_network* l_network = dynamic_cast<adjList_network*>(networks[1]);
     if (l_network != nullptr)
-        dinic_finders.push_back(new adjList_dinic(*l_network));
+        dinic_finders.emplace_back(new adjList_dinic(*l_network));
     return dinic_finders;
+}
+
+void add_finders(std::vector<IMaxFlowFinder*>& oldFinders, std::vector<IMaxFlowFinder*> newFinders) {
+    for (auto finder : newFinders)
+        oldFinders.emplace_back(finder);
 }
 
 void run_algorithms(std::vector<IMaxFlowFinder*> finders)
@@ -138,4 +146,15 @@ void run_algorithms(std::vector<IMaxFlowFinder*> finders)
             << "\t" << "Максимальный поток: " << result << std::endl
             << "\t" << "Время выполнения алгоритма: " << finder->get_running_time() << " мс." << '\n';
     }
+}
+
+void print_message(std::string pattern, ...)
+{
+    va_list args;
+    va_start(args, pattern);
+    for (auto format : pattern)
+        if (format == 'i')
+            std::cout << va_arg(args, int);
+        else if (format == 's')
+            std::cout << va_arg(args, const char*);
 }

@@ -7,26 +7,24 @@ adjList_dinic::adjList_dinic(adjList_network network)
 
 std::string adjList_dinic::get_name()
 {
-	return dinic::get_name() + "(список смежности)";
+	return dinic::get_name() + " (список смежности)";
 }
 
 int adjList_dinic::find_max_flow(int curNode, int curFlow)
 {
 	if (curNode == networkParams.dest || curFlow == 0)
 		return curFlow;
-	for (int i = p[curNode]; i <= networkParams.numOfNodes; i++) {
-		if (distances[i] == distances[curNode] + 1) {
-			auto index = std::distance(network[curNode].begin(), std::find_if(network[curNode].begin(), network[curNode].end(),
-				[i](auto edge) {return edge.first == i && edge.second; }));
-			int maxFlow = 0;
-			if (index < network[curNode].size()) 
-				maxFlow = find_max_flow(i, std::min(curFlow, network[curNode][index].second));
-			if (maxFlow > 0) {
-				run_flow(curNode, i, maxFlow);
-				return maxFlow;
+	for (auto nextNode : network[curNode]){
+		if (nextNode.second > 0) {
+			if (distances[nextNode.first] == distances[curNode] + 1) {
+				int maxFlow = 0;
+				maxFlow = find_max_flow(nextNode.first, std::min(curFlow, nextNode.second));
+				if (maxFlow > 0) {
+					run_flow(curNode, nextNode.first, maxFlow);
+					return maxFlow;
+				}
 			}
 		}
-		p[curNode]++;
 	}
 	return 0;
 }
@@ -41,13 +39,10 @@ bool adjList_dinic::bfs()
 	{
 		int curNode = q.front();
 		q.pop();
-		for (int i = 1; i <= networkParams.numOfNodes; i++) {
-			auto index = std::distance(network[curNode].begin(), std::find_if(network[curNode].begin(), network[curNode].end(),
-				[i](auto edge) {return edge.first == i; }));
-			if (index < network[curNode].size() && network[curNode][index].second && distances[i] == INT_MAX) {
-				distances[i] = distances[curNode] + 1;
-				q.push(i);
-			}
+		for (auto nextNode : network[curNode])
+			if (nextNode.second > 0 && distances[nextNode.first] == INT_MAX) {
+				distances[nextNode.first] = distances[curNode] + 1;
+				q.push(nextNode.first);
 		}
 	}
 	return distances[networkParams.dest] != INT_MAX;

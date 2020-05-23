@@ -6,14 +6,14 @@ matrix_dinic::matrix_dinic(matrix_network network)
 
 std::string matrix_dinic::get_name()
 {
-	return dinic::get_name() + "(матрица смежности)";
+	return dinic::get_name() + " (матрица смежности)";
 }
 
 int matrix_dinic::find_max_flow(int curNode, int curFlow)
 {
 	if (curNode == networkParams.dest || curFlow == 0)
 		return curFlow;
-	for (int i = p[curNode]; i <= networkParams.numOfNodes; i++) {
+	for (int i = 1; i <= networkParams.numOfNodes; i++) {
 		if (distances[i] == distances[curNode] + 1) {
 			int maxFlow = find_max_flow(i, std::min(curFlow, network[curNode][i]));
 			if (maxFlow > 0) {
@@ -21,7 +21,6 @@ int matrix_dinic::find_max_flow(int curNode, int curFlow)
 				return maxFlow;
 			}
 		}
-		p[curNode]++;
 	}
 	return 0;
 }

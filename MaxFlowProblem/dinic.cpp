@@ -4,13 +4,11 @@ dinic::dinic(network_base network)
 	: networkParams(network.get_params())
 {
 	distances = new int[networkParams.numOfNodes + 1];
-	p = new int[networkParams.numOfNodes + 1];
 }
 
 dinic::~dinic()
 {
 	delete[] distances;
-	delete[] p;
 }
 
 int dinic::solve()
@@ -18,7 +16,6 @@ int dinic::solve()
 	startSearchTime = clock();
 	int maxFlow = 0, curFlow;
 	while (bfs()) {
-		std::fill(p, p + networkParams.numOfNodes + 1, 0);
 		curFlow = find_max_flow(networkParams.source, INT_MAX);
 		while (curFlow > 0) {
 			maxFlow += curFlow;
