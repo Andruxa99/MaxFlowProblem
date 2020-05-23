@@ -96,6 +96,9 @@
     <ClCompile Include="dinic.cpp">
       <Filter>Исходные файлы\Dinic</Filter>
     </ClCompile>
+    <ClCompile Include="adjList_dinic.cpp">
+      <Filter>Исходные файлы\Dinic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myArray.h">
@@ -150,6 +153,9 @@
       <Filter>Файлы заголовков\Dinic</Filter>
     </ClInclude>
     <ClInclude Include="dinic.h">
+      <Filter>Файлы заголовков\Dinic</Filter>
+    </ClInclude>
+    <ClInclude Include="adjList_dinic.h">
       <Filter>Файлы заголовков\Dinic</Filter>
     </ClInclude>
   </ItemGroup>

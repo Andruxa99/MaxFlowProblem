@@ -10,6 +10,7 @@ dinic::dinic(network_base network)
 dinic::~dinic()
 {
 	delete[] distances;
+	delete[] p;
 }
 
 int dinic::solve()

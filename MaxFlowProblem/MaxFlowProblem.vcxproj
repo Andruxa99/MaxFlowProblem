@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="adjList_dinic.cpp" />
     <ClCompile Include="adjList_ff.cpp" />
     <ClCompile Include="adjList_network.cpp" />
     <ClCompile Include="adj_list.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="network_base.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="adjList_dinic.h" />
     <ClInclude Include="adjList_ff.h" />
     <ClInclude Include="adjList_network.h" />
     <ClInclude Include="adj_list.h" />

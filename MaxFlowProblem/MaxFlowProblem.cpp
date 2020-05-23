@@ -13,6 +13,7 @@
 #include "matrix_ff.h"
 #include "adjList_ff.h"
 #include "matrix_dinic.h"
+#include "adjList_dinic.h"
 
 
 network_params read_network_params(network_io& ioStream);
@@ -123,6 +124,9 @@ std::vector<dinic*> create_dinic_finders(std::vector<network_base*> networks)
     matrix_network* m_network = dynamic_cast<matrix_network*>(networks[0]);
     if (m_network != nullptr)
         dinic_finders.push_back(new matrix_dinic(*m_network));
+    adjList_network* l_network = dynamic_cast<adjList_network*>(networks[1]);
+    if (l_network != nullptr)
+        dinic_finders.push_back(new adjList_dinic(*l_network));
     return dinic_finders;
 }
 
