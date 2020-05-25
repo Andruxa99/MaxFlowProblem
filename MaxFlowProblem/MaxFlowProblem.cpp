@@ -26,6 +26,7 @@ edges_list generate_network(const network_params& networkParams);
 std::vector<IMaxFlowFinder*> create_finders(std::vector<network_base*> networks);
 std::vector<IMaxFlowFinder*> create_ford_fulkerson_finders(std::vector<network_base*> networks);
 std::vector<IMaxFlowFinder*> create_dinic_finders(std::vector<network_base*> networks);
+std::vector<IMaxFlowFinder*> create_push_relabel_finders(std::vector<network_base*> networks);
 void add_finders(std::vector<IMaxFlowFinder*>& oldFinders, std::vector<IMaxFlowFinder*> newFinders);
 void run_algorithms(std::vector<IMaxFlowFinder*> finders);
 void print_message(std::string pattern, ...);
@@ -129,6 +130,8 @@ std::vector<IMaxFlowFinder*> create_finders(std::vector<network_base*> networks)
     add_finders(finders, ff_finders);
     auto dinic_finders = create_dinic_finders(networks);
     add_finders(finders, dinic_finders);
+    auto push_relabel_finders = create_push_relabel_finders(networks);
+    add_finders(finders, push_relabel_finders);
     endTime = clock();
     return finders;
 }
@@ -155,6 +158,15 @@ std::vector<IMaxFlowFinder*> create_dinic_finders(std::vector<network_base*> net
     if (l_network != nullptr)
         dinic_finders.emplace_back(new adjList_dinic(*l_network));
     return dinic_finders;
+}
+
+std::vector<IMaxFlowFinder*> create_push_relabel_finders(std::vector<network_base*> networks)
+{
+    std::vector<IMaxFlowFinder*> push_relabel_finders;
+    matrix_network* m_network = dynamic_cast<matrix_network*>(networks[0]);
+    if (m_network != nullptr)
+        push_relabel_finders.emplace_back(new matrix_push_relabel(*m_network));
+    return push_relabel_finders;
 }
 
 void add_finders(std::vector<IMaxFlowFinder*>& oldFinders, std::vector<IMaxFlowFinder*> newFinders) {

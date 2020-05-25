@@ -14,7 +14,7 @@ protected:
 	int* distances;
 	network_params networkParams;
 
-	virtual int find_max_flow(int curVertex, int curFlow);
+	virtual int find_max_flow(int curVertex, int curFlow) = 0;
 	virtual bool bfs();
 };
 

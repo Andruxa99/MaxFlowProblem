@@ -32,11 +32,6 @@ std::string dinic::get_name()
 	return IMaxFlowFinder::get_name();
 }
 
-int dinic::find_max_flow(int curVertex, int curFlow)
-{
-	return 0;
-}
-
 bool dinic::bfs()
 {
 	std::fill(distances, distances + networkParams.numOfNodes + 1, INT_MAX);

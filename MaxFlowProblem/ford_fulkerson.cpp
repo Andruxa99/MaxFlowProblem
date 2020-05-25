@@ -31,8 +31,3 @@ std::string ford_fulkerson::get_name()
     name = "Алгоритм Форда-Фалкерсона";
     return IMaxFlowFinder::get_name();
 }
-
-int ford_fulkerson::find_max_flow(int begVertex, int curFlow)
-{
-    return 0;
-}

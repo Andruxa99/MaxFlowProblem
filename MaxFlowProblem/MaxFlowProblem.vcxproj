@@ -156,6 +156,7 @@
     <ClCompile Include="ford_fulkerson.cpp" />
     <ClCompile Include="IMaxFlowFinder.cpp" />
     <ClCompile Include="matrix_dinic.cpp" />
+    <ClCompile Include="matrix_push_relabel.cpp" />
     <ClCompile Include="network_converter.cpp" />
     <ClCompile Include="network_generator.cpp" />
     <ClCompile Include="network_io.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="matrix_network.cpp" />
     <ClCompile Include="MaxFlowProblem.cpp" />
     <ClCompile Include="network_base.cpp" />
+    <ClCompile Include="push_relabel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="adjList_dinic.h" />
@@ -175,6 +177,7 @@
     <ClInclude Include="IMaxFlowFinder.h" />
     <ClInclude Include="matrix_dinic.h" />
     <ClInclude Include="matrix_network.h" />
+    <ClInclude Include="matrix_push_relabel.h" />
     <ClInclude Include="network_converter.h" />
     <ClInclude Include="network_generator.h" />
     <ClInclude Include="network_io.h" />
@@ -185,6 +188,7 @@
     <ClInclude Include="myArray.hpp" />
     <ClInclude Include="network_base.h" />
     <ClInclude Include="network_params.h" />
+    <ClInclude Include="push_relabel.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="network.txt" />
