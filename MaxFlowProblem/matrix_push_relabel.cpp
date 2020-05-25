@@ -15,6 +15,7 @@ void matrix_push_relabel::excesses_init()
 		if (i != networkParams.source) {
 			excesses[i] = network[networkParams.source][i];
 			network[i][networkParams.source] += network[networkParams.source][i];
+			network[networkParams.source][i] = 0;
 		}
 }
 
@@ -36,10 +37,6 @@ int matrix_push_relabel::find_max_flow()
 			lift(overflowingNode);
 	}
 
-	/*int maxFlow = 0;
-	for (int i = 1; i < networkParams.numOfNodes; i++)
-		if (network[networkParams.source][i] > 0)
-			maxFlow += network[networkParams.source][i];*/
 	return excesses[networkParams.dest];
 }
 
@@ -70,8 +67,9 @@ void matrix_push_relabel::push(int begNode, int endNode)
 void matrix_push_relabel::lift(int curNode)
 {
 	int minHeight = 2 * networkParams.numOfNodes + 1;
-	for (int i = 1; i < networkParams.numOfNodes; i++)
+	for (int i = 1; i <= networkParams.numOfNodes; i++)
 		if (network[curNode][i] && heights[i] < minHeight)
 			minHeight = heights[i];
+	if (minHeight == 2 * networkParams.numOfNodes + 1) return;
 	heights[curNode] = minHeight + 1;
 }

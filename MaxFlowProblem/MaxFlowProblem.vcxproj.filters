@@ -52,6 +52,18 @@
     <Filter Include="Файлы заголовков\Dinic">
       <UniqueIdentifier>{21025a56-8577-4f0b-a67c-2f6beeb7fa9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Push_Relabel">
+      <UniqueIdentifier>{e8fc651f-b22e-46b2-ace5-3f44902e3e88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Push_Relabel">
+      <UniqueIdentifier>{05c278d7-e98a-4582-a0b4-cc0e4803c025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Flow_runner">
+      <UniqueIdentifier>{dfba4e36-71b7-4867-bdd9-5f11b6054362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Flow_runner">
+      <UniqueIdentifier>{862d7653-b8bc-411d-9099-c01d4744733b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MaxFlowProblem.cpp">
@@ -99,14 +111,14 @@
     <ClCompile Include="adjList_dinic.cpp">
       <Filter>Исходные файлы\Dinic</Filter>
     </ClCompile>
-    <ClCompile Include="flow_runner.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="push_relabel.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Push_Relabel</Filter>
     </ClCompile>
     <ClCompile Include="matrix_push_relabel.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Push_Relabel</Filter>
+    </ClCompile>
+    <ClCompile Include="flow_runner.cpp">
+      <Filter>Исходные файлы\Flow_runner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,14 +179,14 @@
     <ClInclude Include="adjList_dinic.h">
       <Filter>Файлы заголовков\Dinic</Filter>
     </ClInclude>
-    <ClInclude Include="flow_runner.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="matrix_push_relabel.h">
+      <Filter>Файлы заголовков\Push_Relabel</Filter>
     </ClInclude>
     <ClInclude Include="push_relabel.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Push_Relabel</Filter>
     </ClInclude>
-    <ClInclude Include="matrix_push_relabel.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="flow_runner.h">
+      <Filter>Файлы заголовков\Flow_runner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
