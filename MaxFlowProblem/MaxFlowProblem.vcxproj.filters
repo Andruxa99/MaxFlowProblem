@@ -120,6 +120,9 @@
     <ClCompile Include="flow_runner.cpp">
       <Filter>Исходные файлы\Flow_runner</Filter>
     </ClCompile>
+    <ClCompile Include="adjList_push_relabel.cpp">
+      <Filter>Исходные файлы\Push_Relabel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myArray.h">
@@ -187,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="flow_runner.h">
       <Filter>Файлы заголовков\Flow_runner</Filter>
+    </ClInclude>
+    <ClInclude Include="adjList_push_relabel.h">
+      <Filter>Файлы заголовков\Push_Relabel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

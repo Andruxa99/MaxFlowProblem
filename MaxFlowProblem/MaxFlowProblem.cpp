@@ -17,6 +17,7 @@
 #include "matrix_dinic.h"
 #include "adjList_dinic.h"
 #include "matrix_push_relabel.h"
+#include "adjList_push_relabel.h"
 
 network_params read_network_params(network_io& ioStream);
 std::vector<network_base*> create_networks(const edges_list& network, const network_params& networkParams);
@@ -54,7 +55,7 @@ int main()
         network = generate_network(networkParams);
         print_message("sis", "\tok\t", endTime - begTime, " мс.\n");
 
-        print_message("s", "\nПечать данных сети...");
+        print_message("s", "Печать данных сети...");
         begTime = clock();
         ioStream.write_network(network, networkParams);
         endTime = clock();
@@ -166,6 +167,9 @@ std::vector<IMaxFlowFinder*> create_push_relabel_finders(std::vector<network_bas
     matrix_network* m_network = dynamic_cast<matrix_network*>(networks[0]);
     if (m_network != nullptr)
         push_relabel_finders.emplace_back(new matrix_push_relabel(*m_network));
+    adjList_network* l_network = dynamic_cast<adjList_network*>(networks[1]);
+    if (l_network != nullptr)
+        push_relabel_finders.emplace_back(new adjList_push_relabel(*l_network));
     return push_relabel_finders;
 }
 
