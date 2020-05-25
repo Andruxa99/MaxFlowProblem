@@ -19,35 +19,6 @@ void matrix_push_relabel::excesses_init()
 		}
 }
 
-void matrix_push_relabel::heights_init()
-{
-	heights[networkParams.source] = networkParams.numOfNodes;
-}
-
-int matrix_push_relabel::find_max_flow()
-{
-	while (true) {
-		int overflowingNode = find_overflowing_node();
-		if (overflowingNode == networkParams.numOfNodes) break;
-
-		int neighbor = find_neighbor_of_overflowing_node(overflowingNode);
-		if (neighbor <= networkParams.numOfNodes)
-			push(overflowingNode, neighbor);
-		else
-			lift(overflowingNode);
-	}
-
-	return excesses[networkParams.dest];
-}
-
-int matrix_push_relabel::find_overflowing_node()
-{
-	int overflowingNode = 2;
-	for (; overflowingNode < networkParams.numOfNodes; overflowingNode++)
-		if (excesses[overflowingNode] > 0) break;
-	return overflowingNode;
-}
-
 int matrix_push_relabel::find_neighbor_of_overflowing_node(int overflowingNode)
 {
 	int neighbor = 1;

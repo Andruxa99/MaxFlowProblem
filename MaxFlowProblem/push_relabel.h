@@ -15,9 +15,11 @@ protected:
 	int* heights;
 	network_params networkParams;
 
-	virtual int find_max_flow() = 0;
+	int find_max_flow();
 	virtual void excesses_init() = 0;
-	virtual void heights_init() = 0;
+	void heights_init();
+	int find_overflowing_node();
+	virtual int find_neighbor_of_overflowing_node(int overflowingNode) = 0;
 	virtual void push(int begNode, int endNode) = 0;
 	virtual void lift(int curNode) = 0;
 };

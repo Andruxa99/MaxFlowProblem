@@ -13,10 +13,7 @@ private:
 	matrix<int> network;
 
 	void excesses_init() override;
-	void heights_init() override;
-	int find_max_flow() override;
-	int find_overflowing_node();
-	int find_neighbor_of_overflowing_node(int overflowingNode);
+	int find_neighbor_of_overflowing_node(int overflowingNode) override;
 	void push(int begNode, int endNode) override;
 	void lift(int curNode) override;
 };
