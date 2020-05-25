@@ -28,6 +28,8 @@ std::vector<IMaxFlowFinder*> create_finders(std::vector<network_base*> networks)
 std::vector<IMaxFlowFinder*> create_ford_fulkerson_finders(std::vector<network_base*> networks);
 std::vector<IMaxFlowFinder*> create_dinic_finders(std::vector<network_base*> networks);
 std::vector<IMaxFlowFinder*> create_push_relabel_finders(std::vector<network_base*> networks);
+template<class T>
+T network_cast(network_base* network);
 void add_finders(std::vector<IMaxFlowFinder*>& oldFinders, std::vector<IMaxFlowFinder*> newFinders);
 void run_algorithms(std::vector<IMaxFlowFinder*> finders);
 void print_message(std::string pattern, ...);
@@ -140,37 +142,38 @@ std::vector<IMaxFlowFinder*> create_finders(std::vector<network_base*> networks)
 std::vector<IMaxFlowFinder*> create_ford_fulkerson_finders(std::vector<network_base*> networks)
 {
     std::vector<IMaxFlowFinder*> ff_finders;
-    matrix_network *m_network = dynamic_cast<matrix_network*>(networks[0]);
-    if (m_network != nullptr)
-        ff_finders.emplace_back(new matrix_ff(*m_network));
-    adjList_network *l_network = dynamic_cast<adjList_network*>(networks[1]);
-    if (l_network != nullptr)
-        ff_finders.emplace_back(new adjList_ff(*l_network));
+    ff_finders.emplace_back(new matrix_ff(network_cast<matrix_network>(networks[0])));
+    ff_finders.emplace_back(new adjList_ff(network_cast<adjList_network>(networks[1])));
     return ff_finders;
 }
 
 std::vector<IMaxFlowFinder*> create_dinic_finders(std::vector<network_base*> networks)
 {
     std::vector<IMaxFlowFinder*> dinic_finders;
-    matrix_network* m_network = dynamic_cast<matrix_network*>(networks[0]);
-    if (m_network != nullptr)
-        dinic_finders.emplace_back(new matrix_dinic(*m_network));
-    adjList_network* l_network = dynamic_cast<adjList_network*>(networks[1]);
-    if (l_network != nullptr)
-        dinic_finders.emplace_back(new adjList_dinic(*l_network));
+    dinic_finders.emplace_back(new matrix_dinic(network_cast<matrix_network>(networks[0])));
+    dinic_finders.emplace_back(new adjList_dinic(network_cast<adjList_network>(networks[1])));
     return dinic_finders;
 }
 
 std::vector<IMaxFlowFinder*> create_push_relabel_finders(std::vector<network_base*> networks)
 {
     std::vector<IMaxFlowFinder*> push_relabel_finders;
-    matrix_network* m_network = dynamic_cast<matrix_network*>(networks[0]);
-    if (m_network != nullptr)
-        push_relabel_finders.emplace_back(new matrix_push_relabel(*m_network));
-    adjList_network* l_network = dynamic_cast<adjList_network*>(networks[1]);
-    if (l_network != nullptr)
-        push_relabel_finders.emplace_back(new adjList_push_relabel(*l_network));
+    push_relabel_finders.emplace_back(new matrix_push_relabel(network_cast<matrix_network>(networks[0])));
+    push_relabel_finders.emplace_back(new adjList_push_relabel(network_cast<adjList_network>(networks[1])));
     return push_relabel_finders;
+}
+
+template<class T>
+T network_cast(network_base* network) {
+    try {
+        T* casted_network = dynamic_cast<T*>(network);
+        if (casted_network == nullptr) throw std::bad_cast();
+        else return *casted_network;
+    }
+    catch (std::bad_cast ex) {
+        std::cout << ex.what();
+        exit(-1);
+    }
 }
 
 void add_finders(std::vector<IMaxFlowFinder*>& oldFinders, std::vector<IMaxFlowFinder*> newFinders) {
