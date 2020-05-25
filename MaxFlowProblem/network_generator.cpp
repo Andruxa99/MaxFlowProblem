@@ -5,9 +5,7 @@
 #include <algorithm>
 
 network_generator::network_generator(network_params params)
-	: params(params)
-{
-}
+	: params(params) {}
 
 edges_list network_generator::generate_network()
 {
@@ -64,6 +62,8 @@ std::vector<int> network_generator::select_available_nodes(int begNode, const ed
 	for (auto i : network) {
 		if (std::get<0>(i) == begNode)
 			badNodes.insert(std::get<1>(i));
+		if (std::get<1>(i) == begNode)
+			badNodes.insert(std::get<0>(i));
 	}
 	std::vector<int> availableNodes;
 	for (int i = 1; i <= params.numOfNodes; i++)
