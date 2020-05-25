@@ -27,3 +27,14 @@ void network_io::write_network(const edges_list& network, const network_params& 
 	for (auto edge : network)
 		out << std::get<0>(edge) << ' ' << std::get<1>(edge) << ' ' << std::get<2>(edge) << '\n';
 }
+
+std::tuple<network_params, edges_list> network_io::read_network()
+{
+	auto networkParams = read_network_params();
+	edges_list network;
+	for (int i = 0, begNode, endNode, weight; i < networkParams.numOfEdges; i++) {
+		in >> begNode >> endNode >> weight;
+		network.push_back({ begNode, endNode, weight });
+	}
+	return { networkParams, network };
+}

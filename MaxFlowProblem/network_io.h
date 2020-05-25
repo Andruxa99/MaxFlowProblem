@@ -8,11 +8,12 @@ typedef std::vector<std::tuple<int, int, int>> edges_list;
 class network_io
 {
 public:
-	network_io(std::string inFileName, std::string outFileName);
+	explicit network_io(std::string inFileName, std::string outFileName = "");
 	~network_io();
 
 	network_params read_network_params();
 	void write_network(const edges_list& network, const network_params& params);
+	std::tuple<network_params, edges_list> read_network();
 
 protected:
 	std::ifstream in;

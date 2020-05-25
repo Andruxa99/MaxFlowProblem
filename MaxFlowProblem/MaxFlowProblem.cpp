@@ -16,6 +16,7 @@
 #include "adjList_ff.h"
 #include "matrix_dinic.h"
 #include "adjList_dinic.h"
+#include "matrix_push_relabel.h"
 
 network_params read_network_params(network_io& ioStream);
 std::vector<network_base*> create_networks(const edges_list& network, const network_params& networkParams);
@@ -34,30 +35,51 @@ clock_t begTime, endTime, runTime;
 int main()
 {
     setlocale(LC_CTYPE, "rus");
-    network_io ioStream("params.txt", "network.txt");
-    auto networkParams = read_network_params(ioStream);
-    print_message("s", "Генерация сети...");
-    auto network = generate_network(networkParams);
-    print_message("siss", "\tok\t", endTime - begTime, " мс.", "\n");
+
+    print_message("sss", "Выберите способ задания сети:\n",
+        "[1] - Автоматическая генерация\n", "[2] - Чтение данных из файла\n");
+    int inputChoice;
+    std::cin >> inputChoice;
+    network_params networkParams;
+    edges_list network;
+    if (inputChoice == 1) {
+        network_io ioStream("params.txt", "network.txt");
+
+        print_message("s", "Чтение параметров сети...");
+        networkParams = read_network_params(ioStream);
+        print_message("sis", "\tok\t", endTime - begTime, " мс.\n");
+
+        print_message("s", "Генерация сети...");
+        network = generate_network(networkParams);
+        print_message("sis", "\tok\t", endTime - begTime, " мс.\n");
+
+        print_message("s", "\nПечать данных сети...");
+        begTime = clock();
+        ioStream.write_network(network, networkParams);
+        endTime = clock();
+        print_message("sis", "\tok\t", endTime - begTime, " мс.\n");
+    }
+    else if (inputChoice == 2) {
+        network_io ioStream("network.txt");
+        print_message("s", "Чтение данных сети из файла...");
+        begTime = clock();
+        std::tie(networkParams, network) = ioStream.read_network();
+        endTime = clock();
+        print_message("sis", "\tok\t", endTime - begTime, " мс.\n");
+    }
 
     print_message("s", "Преобразования сети...");
     auto allDiffNetworks = create_networks(network, networkParams);
-    print_message("siss", "\tok\t", endTime - begTime, " мс.", "\n");
+    print_message("sis", "\tok\t", endTime - begTime, " мс.\n");
 
     print_message("s", "Создание алгоритмов...");
     auto finders = create_finders(allDiffNetworks);
-    print_message("siss", "\tok\t", endTime - begTime, " мс.", "\n");
+    print_message("sis", "\tok\t", endTime - begTime, " мс.\n");
 
     print_message("s", "Исполнение алгоритмов...");
     run_algorithms(finders);
 
-    print_message("s", "Печать данных сети...");
-    begTime = clock();
-    ioStream.write_network(network, networkParams);
-    endTime = clock();
-    print_message("siss", "\tok\t", endTime - begTime, " мс.", "\n");
-
-    print_message("sss", "\nПрограмма успешно выполнена!", "\n", "\a");
+    print_message("ss", "\nПрограмма успешно выполнена!\n", "\a");
     for (auto network : allDiffNetworks)
         delete network;
 
@@ -159,4 +181,5 @@ void print_message(std::string pattern, ...)
             std::cout << va_arg(args, int);
         else if (format == 's')
             std::cout << va_arg(args, const char*);
+    va_end(args);
 }
